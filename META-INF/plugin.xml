@@ -1,42 +1,27 @@
 <idea-plugin version="2">
-  <id>com.yourcompany.unique.plugin.id</id>
-  <name>Plugin display name here</name>
-  <version>1.0</version>
-  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <id>org.idea.plugin.duplicatelines</id>
+    <name>Duplicate lines plugin</name>
+    <version>1.0</version>
+    <vendor email="test@yourcompany.com">mobileDeveloper</vendor>
 
-  <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <small>most HTML tags may be used</small>
+    <description><![CDATA[
+      Plugin for intellij idea to allow copy lines<br>
+      and block of code like Eclipse IDE (Ctrl+Alt+Up and Ctrl+Alt+Down).
       ]]></description>
 
-  <change-notes><![CDATA[
-      Add change notes here.<br>
-      <small>most HTML tags may be used</small>
-      ]]>
-  </change-notes>
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="107.105"/>
 
-  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="107.105"/>
+    <actions>
+        <action id="CopyLineUp" class="org.idea.plugin.duplicatelines.CopyLineUp"
+                text="Copy line(s) up."
+                description="Copy line(s) up.">
+            <add-to-group group-id="EditorActions" anchor="last"/>
+            <keyboard-shortcut first-keystroke="control alt UP" keymap="$default"/>
+        </action>
+    </actions>
 
-  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
-       on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
-  -->
-
-  <application-components>
-    <!-- Add your application components here -->
-  </application-components>
-
-  <project-components>
-    <!-- Add your project components here -->
-  </project-components>
-
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
-
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
 </idea-plugin>
