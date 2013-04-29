@@ -47,7 +47,7 @@ public class CopyLineUpAction extends EditorAction {
             // insert new duplicated string into the document
             document.insertString(linesBlock.getStart(), duplicatedString);
 
-            // select all duplicated block
+            // select duplicated block
             editor.getSelectionModel().setSelection(linesBlock.getStart(), linesBlock.getEnd());
             // move cursor to the start of copied block
             caretModel.moveToOffset(linesBlock.getStart());

@@ -9,10 +9,6 @@ final class Range {
         this.end = end;
     }
 
-    public int size() {
-        return this.end - this.start;
-    }
-
     public int getStart() {
         return start;
     }
