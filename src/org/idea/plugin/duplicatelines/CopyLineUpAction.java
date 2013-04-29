@@ -6,13 +6,13 @@ import com.intellij.openapi.editor.actionSystem.EditorAction;
 import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 import com.intellij.openapi.editor.actionSystem.EditorWriteActionHandler;
 
-public class CopyLineUp extends EditorAction {
+public class CopyLineUpAction extends EditorAction {
 
-    public CopyLineUp(EditorActionHandler defaultHandler) {
+    public CopyLineUpAction(EditorActionHandler defaultHandler) {
         super(defaultHandler);
     }
 
-    public CopyLineUp() {
+    public CopyLineUpAction() {
         this(new UpHandler());
     }
 
@@ -42,10 +42,14 @@ public class CopyLineUp extends EditorAction {
 
             // get the string to duplicate
             String duplicatedString = document.getText().substring(linesBlock.getStart(), linesBlock.getEnd());
-            String swappedBlocksText = duplicatedString + "\n";
-            document.insertString(linesBlock.getStart(), swappedBlocksText);
+            duplicatedString += "\n";
 
+            // insert new duplicated string into the document
+            document.insertString(linesBlock.getStart(), duplicatedString);
+
+            // select all duplicated block
             editor.getSelectionModel().setSelection(linesBlock.getStart(), linesBlock.getEnd());
+            // move cursor to the start of copied block
             caretModel.moveToOffset(linesBlock.getStart());
             editor.getScrollingModel().scrollToCaret(ScrollType.RELATIVE);
         }

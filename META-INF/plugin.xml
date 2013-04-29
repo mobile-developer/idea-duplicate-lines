@@ -1,6 +1,6 @@
 <idea-plugin version="2">
     <id>org.idea.plugin.duplicatelines</id>
-    <name>Duplicate lines plugin</name>
+    <name>Duplicate lines</name>
     <version>1.0</version>
     <vendor email="test@yourcompany.com">mobileDeveloper</vendor>
 
@@ -9,11 +9,10 @@
       and block of code like Eclipse IDE (Ctrl+Alt+Up and Ctrl+Alt+Down).
       ]]></description>
 
-    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
     <idea-version since-build="107.105"/>
 
     <actions>
-        <action id="CopyLineUp" class="org.idea.plugin.duplicatelines.CopyLineUp"
+        <action id="CopyLineUpAction" class="org.idea.plugin.duplicatelines.CopyLineUpAction"
                 text="Copy line(s) up."
                 description="Copy line(s) up.">
             <add-to-group group-id="EditorActions" anchor="last"/>
@@ -22,6 +21,5 @@
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
     </extensions>
 </idea-plugin>
