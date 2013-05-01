@@ -5,6 +5,7 @@ import com.intellij.openapi.editor.*;
 import com.intellij.openapi.editor.actionSystem.EditorAction;
 import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 import com.intellij.openapi.editor.actionSystem.EditorWriteActionHandler;
+import com.intellij.openapi.util.TextRange;
 
 public class CopyLineUpAction extends EditorAction {
 
@@ -34,23 +35,23 @@ public class CopyLineUpAction extends EditorAction {
             SelectionModel selectionModel = editor.getSelectionModel();
 
             // get the range of the selected characters
-            Range charsRange = new Range(selectionModel.getSelectionStart(), selectionModel.getSelectionEnd());
+            TextRange charsRange = new TextRange(selectionModel.getSelectionStart(), selectionModel.getSelectionEnd());
             // get the range of the selected lines (block of code)
-            Range linesRange = new Range(document.getLineNumber(charsRange.getStart()), document.getLineNumber(charsRange.getEnd()));
+            TextRange linesRange = new TextRange(document.getLineNumber(charsRange.getStartOffset()), document.getLineNumber(charsRange.getEndOffset()));
             // range of the duplicated string
-            Range linesBlock = new Range(document.getLineStartOffset(linesRange.getStart()), document.getLineEndOffset(linesRange.getEnd()));
+            TextRange linesBlock = new TextRange(document.getLineStartOffset(linesRange.getStartOffset()), document.getLineEndOffset(linesRange.getEndOffset()));
 
             // get the string to duplicate
-            String duplicatedString = document.getText().substring(linesBlock.getStart(), linesBlock.getEnd());
+            String duplicatedString = document.getText().substring(linesBlock.getStartOffset(), linesBlock.getEndOffset());
             duplicatedString += "\n";
 
             // insert new duplicated string into the document
-            document.insertString(linesBlock.getStart(), duplicatedString);
+            document.insertString(linesBlock.getStartOffset(), duplicatedString);
 
             // select duplicated block
-            editor.getSelectionModel().setSelection(linesBlock.getStart(), linesBlock.getEnd());
+            editor.getSelectionModel().setSelection(linesBlock.getStartOffset(), linesBlock.getStartOffset());
             // move cursor to the start of copied block
-            caretModel.moveToOffset(linesBlock.getStart());
+            caretModel.moveToOffset(linesBlock.getStartOffset());
             editor.getScrollingModel().scrollToCaret(ScrollType.RELATIVE);
         }
     }
